@@ -9,6 +9,8 @@ namespace Pak_Man
         {
             using (var game = new Game1())
                 game.Run();
+
+            
         }
     }
 }

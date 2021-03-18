@@ -1,4 +1,4 @@
-﻿namespace Pak_Man.enums
+﻿namespace Pak_Man
 {
     enum GhostType
     {
