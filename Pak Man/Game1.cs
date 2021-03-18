@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Pak_Man
 {
@@ -11,6 +12,9 @@ namespace Pak_Man
         private Texture2D _texPacMan;
         private Texture2D _texBloc;
         private Texture2D _texMap;
+        private Texture2D _texFood;
+        private List<Texture2D> _texWalls;
+        
         private World world;
 
         private PacMan pacMoon;
@@ -36,7 +40,7 @@ namespace Pak_Man
             _graphics.PreferredBackBufferWidth = 32 * 28;
             _graphics.ApplyChanges();
             pacMoon = new PacMan(Vector2.Zero, _texPacMan);
-            world = new World(_texMap, _texBloc);
+            world = new World(_texMap, _texBloc, _texFood, _texWalls);
         }
 
         protected override void LoadContent()
@@ -46,7 +50,22 @@ namespace Pak_Man
             // TODO: use this.Content to load your game content here
             _texPacMan = Content.Load<Texture2D>(@"sprites/pake_men");
             _texBloc = Content.Load<Texture2D>(@"sprites/block");
-            _texMap = Content.Load<Texture2D>(@"sprites/map01");
+            _texMap = Content.Load<Texture2D>(@"sprites/map02");
+            _texFood = Content.Load<Texture2D>(@"sprites/food");
+
+            _texWalls = new List<Texture2D>()
+            {
+                Content.Load<Texture2D>(@"sprites/walls/wallDown"), 
+                Content.Load<Texture2D>(@"sprites/walls/wallUp"),
+                Content.Load<Texture2D>(@"sprites/walls/wallRight"),
+                Content.Load<Texture2D>(@"sprites/walls/wallLeft"),
+                Content.Load<Texture2D>(@"sprites/walls/wallCornerDownLeft"),
+                Content.Load<Texture2D>(@"sprites/walls/wallCornerDownRight"),
+                Content.Load<Texture2D>(@"sprites/walls/wallCornerTopLeft"),
+                Content.Load<Texture2D>(@"sprites/walls/wallCornerTopRight"),
+
+            };
+
         }
 
         
