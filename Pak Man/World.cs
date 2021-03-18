@@ -27,11 +27,16 @@ namespace Pak_Man
 
         public void Draw(SpriteBatch sb)
         {
+            Color[] pixels = new Color[Width * Height];
+            texMap.GetData(pixels);
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
                 {
-                    sb.Draw(texWall, new Vector2(x, y) * texWall.Width, Color.White);
+                    if (pixels[y * Width + x].R > 0)
+                    {
+                        sb.Draw(texWall, new Vector2(x, y) * texWall.Width, Color.White);
+                    }
                 }
             }
         }

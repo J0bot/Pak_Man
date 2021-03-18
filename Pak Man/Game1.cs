@@ -20,6 +20,7 @@ namespace Pak_Man
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -28,7 +29,12 @@ namespace Pak_Man
         {
             // TODO: Add your initialization logic here
 
+            
+
             base.Initialize();
+            _graphics.PreferredBackBufferHeight = 32 * 31;
+            _graphics.PreferredBackBufferWidth = 32 * 28;
+            _graphics.ApplyChanges();
             pacMoon = new PacMan(Vector2.Zero, _texPacMan);
             world = new World(_texMap, _texBloc);
         }
