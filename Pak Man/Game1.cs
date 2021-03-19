@@ -50,7 +50,7 @@ namespace Pak_Man
             // TODO: use this.Content to load your game content here
             _texPacMan = Content.Load<Texture2D>(@"sprites/pake_men");
             _texBloc = Content.Load<Texture2D>(@"sprites/block");
-            _texMap = Content.Load<Texture2D>(@"sprites/map02");
+            _texMap = Content.Load<Texture2D>(@"sprites/map03");
             _texFood = Content.Load<Texture2D>(@"sprites/food");
 
             _texWalls = new List<Texture2D>()
