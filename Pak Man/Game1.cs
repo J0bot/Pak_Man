@@ -9,12 +9,14 @@ namespace Pak_Man
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private SpriteEffects _spriteEffectsPacMan;
         private Texture2D _texPacMan;
         private Texture2D _texBloc;
         private Texture2D _texMap;
         private Texture2D _texFood;
         private List<Texture2D> _texWalls;
-        
+
+
         private World world;
 
         private PacMan pacMoon;
@@ -85,22 +87,25 @@ namespace Pak_Man
             if (state.IsKeyDown(Keys.Down))
             {
                 pacMoon.Direction = new Vector2(0, 1);
+                _spriteEffectsPacMan = SpriteEffects.FlipVertically;
             }
             else if (state.IsKeyDown(Keys.Up))
             {
                 pacMoon.Direction = new Vector2(0, -1);
+                _spriteEffectsPacMan = SpriteEffects.FlipVertically;
             }
             else if (state.IsKeyDown(Keys.Left))
             {
                 pacMoon.Direction = new Vector2(-1, 0);
+                _spriteEffectsPacMan = SpriteEffects.FlipHorizontally;
             }
             else if (state.IsKeyDown(Keys.Right))
             {
                 pacMoon.Direction = new Vector2(1, 0);
+                _spriteEffectsPacMan = SpriteEffects.None;
             }
 
             pacMoon.Move();
-
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -108,7 +113,7 @@ namespace Pak_Man
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             //MOVE
 
@@ -118,7 +123,7 @@ namespace Pak_Man
             
             _spriteBatch.Begin();
             world.Draw(_spriteBatch);
-            _spriteBatch.Draw(_texPacMan, pacMoon.Position, Color.White);
+            _spriteBatch.Draw(_texPacMan,new Rectangle((int)pacMoon.Position.X,(int)pacMoon.Position.Y,pacMoon.Texture.Width, pacMoon.Texture.Height),null, Color.White, 0f, new Vector2(20,20),_spriteEffectsPacMan,0f);
             _spriteBatch.End();
 
             base.Draw(gameTime);

@@ -22,6 +22,11 @@ namespace Pak_Man
         public void Move()
         {
             Position += Direction*SPEED;
+
+            if (Direction == new Vector2(1,0))
+            {
+                
+            }
         }
 
     }
