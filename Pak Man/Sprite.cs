@@ -1,32 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Pak_Man
 {
     public class Sprite
     {
         public  Texture2D Texture { get; }
-        private Vector2 _rectPos;
         private Rectangle? _clip;
 
-        public Sprite(string textureName, Vector2 rectPos, Rectangle clip)
+        public Sprite(string textureName, Rectangle? clip = null)
         {
             Texture = Resources.GetTexture(textureName);
-            _rectPos = rectPos;
             _clip = clip;
         }
 
-        public Sprite(string textureName)
+        public void Draw(SpriteBatch sb, Vector2 position)
         {
-            Texture = Resources.GetTexture(textureName);
-            _rectPos = Vector2.Zero;
-            _clip = null;
+            sb.Draw(Texture, position, _clip, Color.White);
         }
-
-        public void Draw(SpriteBatch sp)
-        {
-            sp.Draw(Texture, _rectPos, _clip, Color.White);
-        }
-
     }
 }

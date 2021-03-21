@@ -12,10 +12,11 @@ namespace Pak_Man
         public int Width { get; }
 
         private readonly Tile[,] tiles;
+        private readonly SpriteSheet _spritesheet;
         private readonly Texture2D _texColorMap;
         private readonly Color[] pixels;
 
-        private Dictionary<Tile, Texture2D> textures;
+        private Dictionary<Tile, Sprite> sprites;
 
         public Level()
         {
@@ -25,6 +26,7 @@ namespace Pak_Man
             tiles = new Tile[Width, Height];
             pixels = new Color[Width * Height];
 
+            _spritesheet = new SpriteSheet("walls_spritesheet", 4, 3, 32, 32);
             _texColorMap = Resources.GetTexture("map");
             _texColorMap.GetData(pixels);
 
@@ -54,15 +56,18 @@ namespace Pak_Man
                 }
             }
 
-            textures = new Dictionary<Tile, Texture2D>();
-            foreach (int i in Enum.GetValues(typeof(Tile)))
+            sprites = new Dictionary<Tile, Sprite>()
             {
-                if (i == 0)
-                    continue; // Skip empty.
-
-                string resourceName = Enum.GetName(typeof(Tile), (Tile)i);
-                textures.Add((Tile)i, Resources.GetTexture(resourceName));
-            }
+                { Tile.FOOD, _spritesheet[1, 1] },
+                { Tile.WALL_BOTTOM, _spritesheet[1, 2] },
+                { Tile.WALL_TOP, _spritesheet[1, 0] },
+                { Tile.WALL_LEFT, _spritesheet[0, 1] },
+                { Tile.WALL_RIGHT, _spritesheet[2, 1] },
+                { Tile.CORNER_BOTTOM_LEFT, _spritesheet[0, 2] },
+                { Tile.CORNER_BOTTOM_RIGHT, _spritesheet[2, 2] },
+                { Tile.CORNER_TOP_LEFT, _spritesheet[0, 0] },
+                { Tile.CORNER_TOP_RIGHT, _spritesheet[2, 0] }
+            };
         }
 
         public void Draw(SpriteBatch sb)
@@ -74,7 +79,7 @@ namespace Pak_Man
                     Tile tile = tiles[x, y];
                     if (tile != Tile.EMPTY)
                     {
-                        sb.Draw(textures[tile], new Vector2(x, y) * 32, Color.White);
+                        sprites[tile].Draw(sb, new Vector2(x, y) * 32);
                     }
                 }
             }
