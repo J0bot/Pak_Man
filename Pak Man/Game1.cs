@@ -9,65 +9,34 @@ namespace Pak_Man
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private SpriteEffects _spriteEffectsPacMan;
-        private Texture2D _texPacMan;
-        private Texture2D _texBloc;
-        private Texture2D _texMap;
-        private Texture2D _texFood;
-        private List<Texture2D> _texWalls;
-
-
-        private World world;
-
-        private PacMan pacMoon;
-
-        private int x;
+        private Scene currentScene;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
-            
+
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
-            
-
             base.Initialize();
+
             _graphics.PreferredBackBufferHeight = 32 * 31;
             _graphics.PreferredBackBufferWidth = 32 * 28;
             _graphics.ApplyChanges();
-            pacMoon = new PacMan(Vector2.Zero, _texPacMan);
-            world = new World(_texMap, _texBloc, _texFood, _texWalls);
+
+            currentScene = new MainScene();
+
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            _texPacMan = Content.Load<Texture2D>(@"sprites/pake_men");
-            _texBloc = Content.Load<Texture2D>(@"sprites/block");
-            _texMap = Content.Load<Texture2D>(@"sprites/map03");
-            _texFood = Content.Load<Texture2D>(@"sprites/food");
-
-            _texWalls = new List<Texture2D>()
-            {
-                Content.Load<Texture2D>(@"sprites/walls/wallDown"), 
-                Content.Load<Texture2D>(@"sprites/walls/wallUp"),
-                Content.Load<Texture2D>(@"sprites/walls/wallRight"),
-                Content.Load<Texture2D>(@"sprites/walls/wallLeft"),
-                Content.Load<Texture2D>(@"sprites/walls/wallCornerDownLeft"),
-                Content.Load<Texture2D>(@"sprites/walls/wallCornerDownRight"),
-                Content.Load<Texture2D>(@"sprites/walls/wallCornerTopLeft"),
-                Content.Load<Texture2D>(@"sprites/walls/wallCornerTopRight"),
-
-            };
-
+            // Load all textures and sounds.
+            Resources.Load(Content);
         }
 
         
@@ -76,37 +45,7 @@ namespace Pak_Man
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            KeyboardState state = Keyboard.GetState();
-
-            
-            if (state.IsKeyDown(Keys.Escape))
-            {
-                Exit();
-            }
-
-            if (state.IsKeyDown(Keys.Down))
-            {
-                pacMoon.Direction = new Vector2(0, 1);
-                _spriteEffectsPacMan = SpriteEffects.FlipVertically;
-            }
-            else if (state.IsKeyDown(Keys.Up))
-            {
-                pacMoon.Direction = new Vector2(0, -1);
-                _spriteEffectsPacMan = SpriteEffects.FlipVertically;
-            }
-            else if (state.IsKeyDown(Keys.Left))
-            {
-                pacMoon.Direction = new Vector2(-1, 0);
-                _spriteEffectsPacMan = SpriteEffects.FlipHorizontally;
-            }
-            else if (state.IsKeyDown(Keys.Right))
-            {
-                pacMoon.Direction = new Vector2(1, 0);
-                _spriteEffectsPacMan = SpriteEffects.None;
-            }
-
-            pacMoon.Move();
-            // TODO: Add your update logic here
+            currentScene.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -115,15 +54,10 @@ namespace Pak_Man
         {
             GraphicsDevice.Clear(Color.Black);
 
-            //MOVE
-
-            
-
-            // TODO: Add your drawing code here
-            
             _spriteBatch.Begin();
-            world.Draw(_spriteBatch);
-            _spriteBatch.Draw(_texPacMan,new Rectangle((int)pacMoon.Position.X,(int)pacMoon.Position.Y,pacMoon.Texture.Width, pacMoon.Texture.Height),null, Color.White, 0f, new Vector2(20,20),_spriteEffectsPacMan,0f);
+
+            currentScene.Draw(_spriteBatch);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
