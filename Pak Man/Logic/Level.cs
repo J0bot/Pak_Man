@@ -26,7 +26,7 @@ namespace Pak_Man
             tiles = new Tile[Width, Height];
             pixels = new Color[Width * Height];
 
-            _spritesheet = new SpriteSheet("walls_spritesheet", 4, 3, 32, 32);
+            _spritesheet = new SpriteSheet("walls_spritesheet", 5, 3, 32, 32);
             _texColorMap = Resources.GetTexture("map");
             _texColorMap.GetData(pixels);
 

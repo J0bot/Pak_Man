@@ -3,6 +3,7 @@
     public enum Tile
     {
         EMPTY,
+        FOOD,
         WALL_BOTTOM,
         WALL_TOP,
         WALL_RIGHT,
@@ -11,6 +12,9 @@
         CORNER_BOTTOM_RIGHT,
         CORNER_TOP_RIGHT,
         CORNER_TOP_LEFT,
-        FOOD
+        INNER_CORNER_BOTTOM_LEFT,
+        INNER_CORNER_BOTTOM_RIGHT,
+        INNER_CORNER_TOP_RIGHT,
+        INNER_CORNER_TOP_LEFT,
     }
 }
