@@ -10,19 +10,11 @@ namespace Pak_Man
 
         private static readonly Dictionary<string, string> resourcesToLoad = new Dictionary<string, string>()
         {
-            { "pacman", @"sprites/pake_men" },
+            { "pacman", @"sprites/pac-man/pac-man01" },
             { "block", @"sprites/block" },
             { "map", @"sprites/map04" },
             { "walls_spritesheet", @"sprites/walls_spritesheet" },
-            { "FOOD", @"sprites/food" },
-            { "WALL_BOTTOM", @"sprites/walls/wallDown" },
-            { "WALL_TOP", @"sprites/walls/wallUp" },
-            { "WALL_RIGHT", @"sprites/walls/wallRight" },
-            { "WALL_LEFT", @"sprites/walls/wallLeft" },
-            { "CORNER_BOTTOM_LEFT", @"sprites/walls/wallCornerDownLeft" },
-            { "CORNER_BOTTOM_RIGHT", @"sprites/walls/wallCornerDownRight" },
-            { "CORNER_TOP_LEFT", @"sprites/walls/wallCornerTopLeft" },
-            { "CORNER_TOP_RIGHT", @"sprites/walls/wallCornerTopRight"  },
+            { "FOOD", @"sprites/food" }
         };
 
         public static void Load(ContentManager content)
