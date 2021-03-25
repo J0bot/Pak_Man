@@ -35,7 +35,7 @@ namespace Pak_Man
                 for (int x = 0; x < Width; x++)
                 {
                     Color px = pixels[y * Width + x];
-                    if      (px.R == 0 && px.G == 0 && px.B == 0)
+                    if (px.R == 0 && px.G == 0 && px.B == 0)
                         tiles[x, y] = Tile.FOOD;
                     else if (px.R == 255 && px.G == 0 && px.B == 0)
                         tiles[x, y] = Tile.WALL_BOTTOM;
@@ -45,14 +45,22 @@ namespace Pak_Man
                         tiles[x, y] = Tile.WALL_LEFT;
                     else if (px.R == 0 && px.G == 255 && px.B == 255)
                         tiles[x, y] = Tile.WALL_RIGHT;
+                    else if (px.R == 255 && px.G == 255 && px.B == 0)
+                        tiles[x, y] = Tile.CORNER_TOP_LEFT;
+                    else if (px.R == 255 && px.G == 100 && px.B == 255)
+                        tiles[x, y] = Tile.CORNER_TOP_RIGHT;
                     else if (px.R == 100 && px.G == 0 && px.B == 0)
                         tiles[x, y] = Tile.CORNER_BOTTOM_LEFT;
                     else if (px.R == 0 && px.G == 100 && px.B == 0)
                         tiles[x, y] = Tile.CORNER_BOTTOM_RIGHT;
-                    else if (px.R == 255 && px.G == 255 && px.B == 0)
-                        tiles[x, y] = Tile.CORNER_TOP_LEFT;
-                    else if (px.R == 255 && px.G == 0 && px.B == 255)
-                        tiles[x, y] = Tile.CORNER_TOP_RIGHT;
+                    else if (px.R == 0 && px.G == 0 && px.B == 100)
+                        tiles[x, y] = Tile.INNER_CORNER_BOTTOM_LEFT;
+                    else if (px.R == 100 && px.G == 0 && px.B == 100)
+                        tiles[x, y] = Tile.INNER_CORNER_BOTTOM_RIGHT;
+                    else if (px.R == 100 && px.G == 100 && px.B == 0)
+                        tiles[x, y] = Tile.INNER_CORNER_TOP_RIGHT;
+                    else if (px.R == 0 && px.G == 100 && px.B == 100)
+                        tiles[x, y] = Tile.INNER_CORNER_TOP_LEFT;
                 }
             }
 
@@ -66,7 +74,12 @@ namespace Pak_Man
                 { Tile.CORNER_BOTTOM_LEFT, _spritesheet[0, 2] },
                 { Tile.CORNER_BOTTOM_RIGHT, _spritesheet[2, 2] },
                 { Tile.CORNER_TOP_LEFT, _spritesheet[0, 0] },
-                { Tile.CORNER_TOP_RIGHT, _spritesheet[2, 0] }
+                { Tile.CORNER_TOP_RIGHT, _spritesheet[2, 0] },
+                { Tile.INNER_CORNER_TOP_RIGHT, _spritesheet[4, 0] },
+                { Tile.INNER_CORNER_TOP_LEFT, _spritesheet[3, 0] },
+                { Tile.INNER_CORNER_BOTTOM_RIGHT, _spritesheet[4, 1] },
+                { Tile.INNER_CORNER_BOTTOM_LEFT, _spritesheet[3, 1] },
+                //AHMAD 
             };
         }
 

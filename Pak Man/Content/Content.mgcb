@@ -73,6 +73,18 @@
 /processorParam:TextureFormat=Color
 /build:sprites/map03.bmp
 
+#begin sprites/map04.bmp
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=True
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:sprites/map04.bmp
+
 #begin sprites/pake_men.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -180,18 +192,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:sprites/walls/wallUp.png
-
-#begin sprites/walls_spritesheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:sprites/walls_spritesheet.png
 
 #begin sprites/walls_spritesheet.png
 /importer:TextureImporter

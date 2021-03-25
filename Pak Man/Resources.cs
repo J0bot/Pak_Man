@@ -12,7 +12,7 @@ namespace Pak_Man
         {
             { "pacman", @"sprites/pake_men" },
             { "block", @"sprites/block" },
-            { "map", @"sprites/map03" },
+            { "map", @"sprites/map04" },
             { "walls_spritesheet", @"sprites/walls_spritesheet" },
             { "FOOD", @"sprites/food" },
             { "WALL_BOTTOM", @"sprites/walls/wallDown" },
