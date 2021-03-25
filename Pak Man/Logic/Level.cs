@@ -11,60 +11,60 @@ namespace Pak_Man
         public int Height { get; }
         public int Width { get; }
 
-        private readonly Tile[,] tiles;
+        private readonly Tile[,] _tiles;
         private readonly SpriteSheet _spritesheet;
         private readonly Texture2D _texColorMap;
-        private readonly Color[] pixels;
+        private readonly Color[] _pixels;
 
-        private Dictionary<Tile, Sprite> sprites;
+        private Dictionary<Tile, Sprite> _sprites;
 
         public Level()
         {
             Height = 31;
             Width = 28;
 
-            tiles = new Tile[Width, Height];
-            pixels = new Color[Width * Height];
+            _tiles = new Tile[Width, Height];
+            _pixels = new Color[Width * Height];
 
             _spritesheet = new SpriteSheet("walls_spritesheet", 5, 3, 32, 32);
             _texColorMap = Resources.GetTexture("map");
-            _texColorMap.GetData(pixels);
+            _texColorMap.GetData(_pixels);
 
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
                 {
-                    Color px = pixels[y * Width + x];
+                    Color px = _pixels[y * Width + x];
                     if (px.R == 0 && px.G == 0 && px.B == 0)
-                        tiles[x, y] = Tile.FOOD;
+                        _tiles[x, y] = Tile.FOOD;
                     else if (px.R == 255 && px.G == 0 && px.B == 0)
-                        tiles[x, y] = Tile.WALL_BOTTOM;
+                        _tiles[x, y] = Tile.WALL_BOTTOM;
                     else if (px.R == 0 && px.G == 255 && px.B == 0)
-                        tiles[x, y] = Tile.WALL_TOP;
+                        _tiles[x, y] = Tile.WALL_TOP;
                     else if (px.R == 0 && px.G == 0 && px.B == 255)
-                        tiles[x, y] = Tile.WALL_LEFT;
+                        _tiles[x, y] = Tile.WALL_LEFT;
                     else if (px.R == 0 && px.G == 255 && px.B == 255)
-                        tiles[x, y] = Tile.WALL_RIGHT;
+                        _tiles[x, y] = Tile.WALL_RIGHT;
                     else if (px.R == 255 && px.G == 255 && px.B == 0)
-                        tiles[x, y] = Tile.CORNER_TOP_LEFT;
+                        _tiles[x, y] = Tile.CORNER_TOP_LEFT;
                     else if (px.R == 255 && px.G == 100 && px.B == 255)
-                        tiles[x, y] = Tile.CORNER_TOP_RIGHT;
+                        _tiles[x, y] = Tile.CORNER_TOP_RIGHT;
                     else if (px.R == 100 && px.G == 0 && px.B == 0)
-                        tiles[x, y] = Tile.CORNER_BOTTOM_LEFT;
+                        _tiles[x, y] = Tile.CORNER_BOTTOM_LEFT;
                     else if (px.R == 0 && px.G == 100 && px.B == 0)
-                        tiles[x, y] = Tile.CORNER_BOTTOM_RIGHT;
+                        _tiles[x, y] = Tile.CORNER_BOTTOM_RIGHT;
                     else if (px.R == 0 && px.G == 0 && px.B == 100)
-                        tiles[x, y] = Tile.INNER_CORNER_BOTTOM_LEFT;
+                        _tiles[x, y] = Tile.INNER_CORNER_BOTTOM_LEFT;
                     else if (px.R == 100 && px.G == 0 && px.B == 100)
-                        tiles[x, y] = Tile.INNER_CORNER_BOTTOM_RIGHT;
+                        _tiles[x, y] = Tile.INNER_CORNER_BOTTOM_RIGHT;
                     else if (px.R == 100 && px.G == 100 && px.B == 0)
-                        tiles[x, y] = Tile.INNER_CORNER_TOP_RIGHT;
+                        _tiles[x, y] = Tile.INNER_CORNER_TOP_RIGHT;
                     else if (px.R == 0 && px.G == 100 && px.B == 100)
-                        tiles[x, y] = Tile.INNER_CORNER_TOP_LEFT;
+                        _tiles[x, y] = Tile.INNER_CORNER_TOP_LEFT;
                 }
             }
 
-            sprites = new Dictionary<Tile, Sprite>()
+            _sprites = new Dictionary<Tile, Sprite>()
             {
                 { Tile.FOOD, _spritesheet[1, 1] },
                 { Tile.WALL_BOTTOM, _spritesheet[1, 2] },
@@ -89,10 +89,10 @@ namespace Pak_Man
             {
                 for (int x = 0; x < Width; x++)
                 {
-                    Tile tile = tiles[x, y];
+                    Tile tile = _tiles[x, y];
                     if (tile != Tile.EMPTY)
                     {
-                        sprites[tile].Draw(sb, new Vector2(x, y) * 32);
+                        _sprites[tile].Draw(sb, new Vector2(x, y) * 32);
                     }
                 }
             }
