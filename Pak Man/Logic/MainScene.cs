@@ -15,6 +15,9 @@ namespace Pak_Man
 
             GameObjects.Add(level);
             GameObjects.Add(pacman);
+
+            //Initial position test
+            pacman.Position = new Vector2(32, 16 * 29);
         }
 
         public override void Update(GameTime gameTime)
