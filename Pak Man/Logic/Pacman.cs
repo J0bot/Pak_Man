@@ -20,12 +20,19 @@ namespace Pak_Man
 
         private float rotation;
 
+        private Random random;
+
+        private int animationTest;
+        private int animationCounter;
 
         private readonly List<Sprite> sprites;
 
         public Pacman() : base ("Pacman", new Sprite("pacman", new Rectangle(0, 0, 32, 32)))
         {
+            random = new Random();
             spriteSheet = new SpriteSheet("pacman", 4, 1, 32, 32);
+
+            animationTest = 0;
 
             sprites = new List<Sprite>()
             {
@@ -50,6 +57,9 @@ namespace Pak_Man
             Speed = 2;
         }
 
+        /// <summary>
+        /// Fonction move qui permet d'ajuster l'etat du personnage suivant la direction
+        /// </summary>
         public void Move()
         {
             Position += Direction * Speed;
@@ -75,12 +85,32 @@ namespace Pak_Man
                 rotation = -90;
             }
 
+            if (animationCounter<10)
+            {
+                animationTest = 0;
+            }
+            else if (animationCounter <20)
+            {
+                animationTest = 1;
+            }
+            else if (animationCounter < 30)
+            {
+                animationTest = 2;
+            }
+            else if (animationCounter==30)
+            {
+                animationCounter = 0;
+            }
+
+
+            animationCounter++;
+
         }
 
         public override void Draw(SpriteBatch sb)
         {
             //animatedSprite.Draw(sb, Position);
-            sprites[0].Draw(sb, Position, rotation, spriteEffects);
+            sprites[animationTest].Draw(sb, Position, rotation, spriteEffects);
         }
         /*
         PAC_MAN_01,     //Iconic stage
