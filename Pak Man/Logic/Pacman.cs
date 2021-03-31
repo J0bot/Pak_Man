@@ -77,12 +77,14 @@ namespace Pak_Man
             else if (Direction == new Vector2(0, 1))
             {
                 spriteEffects = SpriteEffects.None;
-                rotation = 90;
+                
+                //LES ANGLES DE ROTATION SONT EN RADIANT
+                rotation = (float)Math.PI/2;
             }
             else if (Direction == new Vector2(0, -1))
             {
                 spriteEffects = SpriteEffects.None;
-                rotation = -90;
+                rotation = (float)-Math.PI / 2;
             }
 
             if (animationCounter<10)
